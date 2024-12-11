@@ -41,10 +41,13 @@ extend-select = [
     "PGH", "PL", "R", "TRY", "FLY", "PERF", "FURB", "DOC", "RUF"
 ]
 extend-ignore = [
+    "D100", # Missing docstring in public module; Just annoying and not useful
     "D107", # Missing docstring in __init__. This is not required, better to write is a class docstring
     "D203", # No blank lines allowed before function docstring
     "D212", # Multi-line docstring summary should start at the second line
+    "DOC502", # Has conflict with raising errors in NoReturn functions
     "PLR6301",  # Do not validate the `this method may be static` rule as it is not useful
+    "RET503", # In conflict with "NoReturn" typing annotation
 ]
 preview = true
 
