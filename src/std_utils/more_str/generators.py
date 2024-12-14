@@ -1,4 +1,4 @@
-"""This module contains any useful utility functions used for string generation."""
+"""Module containing different implementation of string generators."""
 
 __all__ = [
     "random_string",
@@ -8,17 +8,7 @@ __all__ = [
 import base64
 import uuid
 from collections.abc import Callable
-from typing import Literal, overload
-
-from std_utils.more_typing.undefined import is_undefined
-
-
-@overload
-def uuid_to_base64(uuid_type: Literal["uuid1", "uuid4"], namespace: None = ...) -> str: ...
-
-
-@overload
-def uuid_to_base64(uuid_type: Literal["uuid3", "uuid5"], namespace: str) -> str: ...
+from typing import Literal
 
 
 def uuid_to_base64(
@@ -42,7 +32,7 @@ def uuid_to_base64(
         case "uuid1" | "uuid4":
             input_bytes = getattr(uuid, uuid_type)().hex.encode("utf-8")
         case "uuid3" | "uuid5":
-            if is_undefined(namespace):
+            if namespace is None:
                 msg = "Namespace must be provided for 'uuid3' and 'uuid5' UUID types."
                 raise ValueError(msg)
             input_bytes = getattr(uuid, uuid_type)(uuid.NAMESPACE_DNS, namespace).hex.encode("utf-8")
@@ -65,8 +55,8 @@ def random_string(
     Args:
         prefix (str | None): Optional prefix to add to the string.
         suffix (str | None): Optional suffix to add to the string.
-        randomizer (Callable[[], str] | None): Optional function that will be used to generate the random part of the
-            string. If None, the default randomizer will be used.
+        randomizer (Callable[[], str]): Optional function that will be used to generate the random part of the
+            string. Defaults to the `uuid_to_base64`.
         max_length (int): Maximum length of the generated string.
 
     Returns:

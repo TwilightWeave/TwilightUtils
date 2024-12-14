@@ -1,3 +1,5 @@
+"""This module provides the `Undefined` class and related utilities for handling undefined values in Python."""
+
 __all__ = [
     "DOC_UNDEFINED",
     "FALSEY_UNDEFINED",
@@ -8,8 +10,6 @@ __all__ = [
     "Undefined",
     "is_undefined",
 ]
-
-__pdoc__ = {}
 
 import dataclasses
 from collections.abc import Callable, Collection
@@ -52,7 +52,6 @@ Collection of attributes that are always allowed for the Undefined class.
 Attributes in this collection are required for the internal implementation, and access to them is always allowed.
 They are moved outside of the Undefined class to avoid recursion in the `__getattribute__` method.
 """
-__pdoc__["_ALWAYS_ALLOWED_ATTRIBUTES"] = True
 
 
 class Undefined:
