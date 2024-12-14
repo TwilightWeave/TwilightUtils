@@ -16,10 +16,12 @@ import uuid
 from collections.abc import Callable
 from typing import Literal
 
-from std_utils.more_typing.undefined import UNDEFINED, is_undefined
+from std_utils.more_typing.undefined import DOC_UNDEFINED, is_undefined
 
 
-def uuid_to_base64(uuid_type: Literal["uuid1", "uuid3", "uuid4", "uuid5"] = "uuid4", namespace: str = UNDEFINED) -> str:
+def uuid_to_base64(
+    uuid_type: Literal["uuid1", "uuid3", "uuid4", "uuid5"] = "uuid4", namespace: str = DOC_UNDEFINED
+) -> str:
     """
     Convert a string to a base64 encoded string.
 

@@ -1,4 +1,5 @@
 __all__ = [
+    "DOC_UNDEFINED",
     "FALSEY_UNDEFINED",
     "STRINGABLE_FALSEY_UNDEFINED",
     "STRINGABLE_UNDEFINED",
@@ -8,6 +9,8 @@ __all__ = [
     "is_undefined",
 ]
 
+__pdoc__ = {}
+
 import dataclasses
 from collections.abc import Callable, Collection
 from typing import Any, ClassVar, Final, NoReturn, Self, TypeIs, final
@@ -15,26 +18,33 @@ from typing import Any, ClassVar, Final, NoReturn, Self, TypeIs, final
 
 @dataclasses.dataclass(frozen=True, slots=True)
 class AllowedAttribute:
-    """
-    Data class to store information describing allowed attribute for the Undefined class.
-
-    Parameters:
-        attribute (str): The name of the attribute to allow access. Required.
-        callback (Callable[..., Any]): The callback to call on access to the attribute. Required.
-            Ensure that the callback repeats interface of the target method.
-        alias (str | None): The alias for the attribute. Optional. Useful for scenarios when you want to
-            provide several undefined objects with the same allowed arguments but different attributes.
-    """
+    """Data class to store information describing allowed attribute for the Undefined class."""
 
     attribute: str
+    """
+    Attribute name to allow access.
+    """
     callback: Callable[..., Any]
+    """
+    Function callback to call on access to the attribute.
+
+    Must repeat the interface of the target method.
+    """
     alias: str | None = None
+    """
+    The alias of the attribute. Optional.
+
+    Useful for cases you need to define several undefined instances with the same allowed arguments but different
+    callback implementations.
+    """
 
 
 _ALWAYS_ALLOWED_ATTRIBUTES: tuple[str, ...] = (
     "_Undefined__allowed_attributes",
     "__init__",
     "__class__",
+    "__wrapped__",
+    "__module__",
 )
 """
 Collection of attributes that are always allowed for the Undefined class.
@@ -42,6 +52,7 @@ Collection of attributes that are always allowed for the Undefined class.
 Attributes in this collection are required for the internal implementation, and access to them is always allowed.
 They are moved outside of the Undefined class to avoid recursion in the __getattribute__ method.
 """
+__pdoc__["_ALWAYS_ALLOWED_ATTRIBUTES"] = True
 
 
 class Undefined:
@@ -66,9 +77,8 @@ class Undefined:
         See details: https://docs.python.org/3/reference/datamodel.html#special-method-lookup
 
     Parameters:
-            allowed_attributes (Collection[AllowedAttribute]): The list of allowed arguments for the instance.
-            For items in the list, the access to the attribute will be allowed. If None, only the `__init__`
-            and `_Undefined__allowed_attributes` are allowed for proper work of the class.
+        allowed_attributes (Collection[AllowedAttribute]): The list of allowed attributes for
+        the instance. It may be an attribute name, or a tuple with the attribute name and the callback to call.
     """
 
     __instances: ClassVar[dict[frozenset[str], Self]] = {}
@@ -84,7 +94,6 @@ class Undefined:
 
         Returns:
             Self: The instance of the class with the defined callbacks for the allowed attributes.
-
         """
         instance_identifier = cls.__to_instance_identifier(allowed_attributes)
         if instance_identifier not in cls.__instances:
@@ -197,16 +206,48 @@ class Undefined:
 
 
 UNDEFINED: Final[Any] = Undefined()
+"""
+The basic and most simple instance of the Undefined class.
+
+Does not allow access to any attribute except for methods required for the correct work of the class.
+"""
 STRINGABLE_UNDEFINED: Final[Any] = Undefined(
     AllowedAttribute("__str__", lambda: "[UNDEFINED]"),
     AllowedAttribute("__repr__", lambda: "[UNDEFINED]"),
 )
+"""
+The instance of the Undefined class that allows access to the __str__ and __repr__ methods.
+
+Useful for cases where you need to access the string representation of the object at runtime without raising an error,
+for example, in the dataclasses, pydantic models. loggers, etc.
+
+If you need alternative implementation for the __str__ or __repr__ methods, you need to create a custom instance of the
+Undefined class with aliases specified.
+"""
+DOC_UNDEFINED: Final[Any] = Undefined(
+    AllowedAttribute("__repr__", lambda: "[REQUIRED]"),
+)
+"""
+Specific instance of the Undefined class that allows access to the __repr__ method.
+
+Used for cases you are using pdoc3 or sphinx to generate documentation. This object will prevent the generation from
+unexpected crashes on processing of the UNDEFINED object.
+"""
 FALSEY_UNDEFINED: Final[Any] = Undefined(AllowedAttribute("__bool__", lambda: False))
+"""
+Simple instance of the Undefined class that allows access to the __bool__ method.
+
+Useful for cases where UNDEFINED is actually a falsy value, and you need to check it in the if statement or any other
+boolean context.
+"""
 STRINGABLE_FALSEY_UNDEFINED: Final[Any] = Undefined(
     AllowedAttribute("__str__", lambda: "[UNDEFINED]"),
     AllowedAttribute("__repr__", lambda: "[UNDEFINED]"),
     AllowedAttribute("__bool__", lambda: False),
 )
+"""
+Combined instance of STRINGABLE_UNDEFINED and FALSEY_UNDEFINED.
+"""
 
 
 def is_undefined(value: Any) -> TypeIs[Undefined]:  # noqa: ANN401 - Any is useful here

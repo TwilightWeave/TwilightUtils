@@ -12,6 +12,7 @@ dev-dependencies = [
     "mypy>=1.13.0",
     "pytest>=8.3.4",
     "pip>=24.3.1",
+    "pdoc3>=0.11.5",
 ]
 
 [tool.rye.scripts]
@@ -24,11 +25,13 @@ lint = { chain = ["lint:ruff-format", "lint:ruff", "lint:mypy"] }
 "lint:ruff-format" = "ruff format --check"
 "lint:ruff" = "ruff check"
 "lint:mypy" = "mypy ."
-pre-commit = { chain = ["format", "lint", "test"] }
+pre-commit = { chain = ["format", "lint", "test", "docs"] }
 "test:pytest" = "pytest ."
 test = { chain = ["test:pytest"] }
 setup = { chain = ["setup:install"] }
 "setup:install" = "rye sync"
+docs = { chain = ["docs:pdoc3"] }
+"docs:pdoc3" = "pdoc --html . --force"
 
 [tool.ruff]
 line-length = 120
