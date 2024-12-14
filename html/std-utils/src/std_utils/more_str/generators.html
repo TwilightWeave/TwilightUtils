@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.5">
 <title>std-utils.src.std_utils.more_str.generators API documentation</title>
-<meta name="description" content="This module contains any useful utility functions used for string generation …">
+<meta name="description" content="This module contains any useful utility functions used for string generation.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -37,9 +37,6 @@ el.replaceWith(d);
 </header>
 <section id="section-intro">
 <p>This module contains any useful utility functions used for string generation.</p>
-<h2 id="functions">Functions</h2>
-<p>uuid_to_base64: Generate a random string using the uuid and convert it to base64.
-random_string: Generate a random string based on specified prefix, suffix, and randomizer.</p>
 </section>
 <section>
 </section>
@@ -65,7 +62,7 @@ random_string: Generate a random string based on specified prefix, suffix, and r
     &#34;&#34;&#34;
     Generate a random string.
 
-    Parameters:
+    Args:
         prefix (str | None): Optional prefix to add to the string.
         suffix (str | None): Optional suffix to add to the string.
         randomizer (Callable[[], str] | None): Optional function that will be used to generate the random part of the
@@ -88,12 +85,18 @@ random_string: Generate a random string based on specified prefix, suffix, and r
     raise ValueError(msg)</code></pre>
 </details>
 <div class="desc"><p>Generate a random string.</p>
-<h2 id="parameters">Parameters</h2>
-<p>prefix (str | None): Optional prefix to add to the string.
-suffix (str | None): Optional suffix to add to the string.
-randomizer (Callable[[], str] | None): Optional function that will be used to generate the random part of the
-string. If None, the default randomizer will be used.
-max_length (int): Maximum length of the generated string.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>prefix</code></strong> :&ensp;<code>str | None</code></dt>
+<dd>Optional prefix to add to the string.</dd>
+<dt><strong><code>suffix</code></strong> :&ensp;<code>str | None</code></dt>
+<dd>Optional suffix to add to the string.</dd>
+<dt><strong><code>randomizer</code></strong> :&ensp;<code>Callable[[], str] | None</code></dt>
+<dd>Optional function that will be used to generate the random part of the
+string. If None, the default randomizer will be used.</dd>
+<dt><strong><code>max_length</code></strong> :&ensp;<code>int</code></dt>
+<dd>Maximum length of the generated string.</dd>
+</dl>
 <h2 id="returns">Returns</h2>
 <dl>
 <dt><code>str</code></dt>
@@ -106,7 +109,7 @@ max_length (int): Maximum length of the generated string.</p>
 </dl></div>
 </dd>
 <dt id="std-utils.src.std_utils.more_str.generators.uuid_to_base64"><code class="name flex">
-<span>def <span class="ident">uuid_to_base64</span></span>(<span>uuid_type: Literal['uuid1', 'uuid3', 'uuid4', 'uuid5'] = 'uuid4',<br>namespace: str = [REQUIRED]) ‑> str</span>
+<span>def <span class="ident">uuid_to_base64</span></span>(<span>uuid_type: Literal['uuid1', 'uuid3', 'uuid4', 'uuid5'] = 'uuid4',<br>namespace: str | None = None) ‑> str</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -114,12 +117,12 @@ max_length (int): Maximum length of the generated string.</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def uuid_to_base64(
-    uuid_type: Literal[&#34;uuid1&#34;, &#34;uuid3&#34;, &#34;uuid4&#34;, &#34;uuid5&#34;] = &#34;uuid4&#34;, namespace: str = DOC_UNDEFINED
+    uuid_type: Literal[&#34;uuid1&#34;, &#34;uuid3&#34;, &#34;uuid4&#34;, &#34;uuid5&#34;] = &#34;uuid4&#34;, namespace: str | None = None
 ) -&gt; str:
     &#34;&#34;&#34;
     Convert a string to a base64 encoded string.
 
-    Parameters:
+    Args:
         uuid_type (str): The type of UUID to generate. Must be one of &#34;uuid1&#34;, &#34;uuid3&#34;, &#34;uuid4&#34;, or &#34;uuid5&#34;.
         namespace (str): The namespace to use for the UUID. Only used for &#34;uuid3&#34; and &#34;uuid5&#34; UUID types.
 
@@ -145,9 +148,13 @@ max_length (int): Maximum length of the generated string.</p>
     return base64_bytes.decode(&#34;utf-8&#34;)</code></pre>
 </details>
 <div class="desc"><p>Convert a string to a base64 encoded string.</p>
-<h2 id="parameters">Parameters</h2>
-<p>uuid_type (str): The type of UUID to generate. Must be one of "uuid1", "uuid3", "uuid4", or "uuid5".
-namespace (str): The namespace to use for the UUID. Only used for "uuid3" and "uuid5" UUID types.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>uuid_type</code></strong> :&ensp;<code>str</code></dt>
+<dd>The type of UUID to generate. Must be one of "uuid1", "uuid3", "uuid4", or "uuid5".</dd>
+<dt><strong><code>namespace</code></strong> :&ensp;<code>str</code></dt>
+<dd>The namespace to use for the UUID. Only used for "uuid3" and "uuid5" UUID types.</dd>
+</dl>
 <h2 id="returns">Returns</h2>
 <dl>
 <dt><code>str</code></dt>

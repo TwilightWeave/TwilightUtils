@@ -88,7 +88,7 @@ the Undefined class with aliases specified.</p></div>
     &#34;&#34;&#34;
     Check if the value is an undefined value.
 
-    Arguments:
+    Args:
         value (Any): The value to check.
 
     Returns:
@@ -97,8 +97,11 @@ the Undefined class with aliases specified.</p></div>
     return isinstance(value, Undefined)</code></pre>
 </details>
 <div class="desc"><p>Check if the value is an undefined value.</p>
-<h2 id="arguments">Arguments</h2>
-<p>value (Any): The value to check.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong> :&ensp;<code>Any</code></dt>
+<dd>The value to check.</dd>
+</dl>
 <h2 id="returns">Returns</h2>
 <dl>
 <dt><code>bool</code></dt>
@@ -269,7 +272,7 @@ class AllowedAttribute:
 
         See details: https://docs.python.org/3/reference/datamodel.html#special-method-lookup
 
-    Parameters:
+    Args:
         allowed_attributes (Collection[AllowedAttribute]): The list of allowed attributes for
         the instance. It may be an attribute name, or a tuple with the attribute name and the callback to call.
     &#34;&#34;&#34;
@@ -281,7 +284,7 @@ class AllowedAttribute:
         &#34;&#34;&#34;
         Return the same instance of the class per each set of allowed arguments.
 
-        Parameters:
+        Args:
             allowed_attributes (Collection[AllowedAttribute]): The list of allowed attributes for
             the instance. It may be an attribute name, or a tuple with the attribute name and the callback to call.
 
@@ -355,7 +358,7 @@ class AllowedAttribute:
         &#34;&#34;&#34;
         Override of the `__getattribute__` method to raise an error on any access to the instance properties.
 
-        Arguments:
+        Args:
             item (str): The name of the attribute to access.
 
         Raises:
@@ -410,9 +413,12 @@ and <code>__repr__</code> based on specified configuration.</p>
 <p>If you need to implement similar behaviour for another build-in calls, you need explicitly inherit
 from this class and override the necessary methods.</p>
 <p>See details: <a href="https://docs.python.org/3/reference/datamodel.html#special-method-lookup">https://docs.python.org/3/reference/datamodel.html#special-method-lookup</a></p>
-<h2 id="parameters">Parameters</h2>
-<p>allowed_attributes (Collection[AllowedAttribute]): The list of allowed attributes for
-the instance. It may be an attribute name, or a tuple with the attribute name and the callback to call.</p></div>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>allowed_attributes</code></strong> :&ensp;<code>Collection[<a title="std-utils.src.std_utils.more_typing.undefined.AllowedAttribute" href="#std-utils.src.std_utils.more_typing.undefined.AllowedAttribute">AllowedAttribute</a>]</code></dt>
+<dd>The list of allowed attributes for</dd>
+</dl>
+<p>the instance. It may be an attribute name, or a tuple with the attribute name and the callback to call.</p></div>
 </dd>
 </dl>
 </section>

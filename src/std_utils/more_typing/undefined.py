@@ -76,7 +76,7 @@ class Undefined:
 
         See details: https://docs.python.org/3/reference/datamodel.html#special-method-lookup
 
-    Parameters:
+    Args:
         allowed_attributes (Collection[AllowedAttribute]): The list of allowed attributes for
         the instance. It may be an attribute name, or a tuple with the attribute name and the callback to call.
     """
@@ -88,7 +88,7 @@ class Undefined:
         """
         Return the same instance of the class per each set of allowed arguments.
 
-        Parameters:
+        Args:
             allowed_attributes (Collection[AllowedAttribute]): The list of allowed attributes for
             the instance. It may be an attribute name, or a tuple with the attribute name and the callback to call.
 
@@ -162,7 +162,7 @@ class Undefined:
         """
         Override of the `__getattribute__` method to raise an error on any access to the instance properties.
 
-        Arguments:
+        Args:
             item (str): The name of the attribute to access.
 
         Raises:
@@ -254,7 +254,7 @@ def is_undefined(value: Any) -> TypeIs[Undefined]:  # noqa: ANN401 - Any is usef
     """
     Check if the value is an undefined value.
 
-    Arguments:
+    Args:
         value (Any): The value to check.
 
     Returns:

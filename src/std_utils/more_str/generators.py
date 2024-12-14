@@ -1,10 +1,4 @@
-"""
-This module contains any useful utility functions used for string generation.
-
-Functions:
-    uuid_to_base64: Generate a random string using the uuid and convert it to base64.
-    random_string: Generate a random string based on specified prefix, suffix, and randomizer.
-"""
+"""This module contains any useful utility functions used for string generation."""
 
 __all__ = [
     "random_string",
@@ -14,18 +8,26 @@ __all__ = [
 import base64
 import uuid
 from collections.abc import Callable
-from typing import Literal
+from typing import Literal, overload
 
-from std_utils.more_typing.undefined import DOC_UNDEFINED, is_undefined
+from std_utils.more_typing.undefined import is_undefined
+
+
+@overload
+def uuid_to_base64(uuid_type: Literal["uuid1", "uuid4"], namespace: None = ...) -> str: ...
+
+
+@overload
+def uuid_to_base64(uuid_type: Literal["uuid3", "uuid5"], namespace: str) -> str: ...
 
 
 def uuid_to_base64(
-    uuid_type: Literal["uuid1", "uuid3", "uuid4", "uuid5"] = "uuid4", namespace: str = DOC_UNDEFINED
+    uuid_type: Literal["uuid1", "uuid3", "uuid4", "uuid5"] = "uuid4", namespace: str | None = None
 ) -> str:
     """
     Convert a string to a base64 encoded string.
 
-    Parameters:
+    Args:
         uuid_type (str): The type of UUID to generate. Must be one of "uuid1", "uuid3", "uuid4", or "uuid5".
         namespace (str): The namespace to use for the UUID. Only used for "uuid3" and "uuid5" UUID types.
 
@@ -60,7 +62,7 @@ def random_string(
     """
     Generate a random string.
 
-    Parameters:
+    Args:
         prefix (str | None): Optional prefix to add to the string.
         suffix (str | None): Optional suffix to add to the string.
         randomizer (Callable[[], str] | None): Optional function that will be used to generate the random part of the
