@@ -31,6 +31,19 @@ class AllowedAttribute:
     alias: str | None = None
 
 
+_ALWAYS_ALLOWED_ATTRIBUTES: tuple[str, ...] = (
+    "_Undefined__allowed_attributes",
+    "__init__",
+    "__class__",
+)
+"""
+Collection of attributes that are always allowed for the Undefined class.
+
+Attributes in this collection are required for the internal implementation, and access to them is always allowed.
+They are moved outside of the Undefined class to avoid recursion in the __getattribute__ method.
+"""
+
+
 class Undefined:
     """
     A class to represent an undefined value.
@@ -150,7 +163,7 @@ class Undefined:
         Returns:
             Any: The value of the attribute if it is allowed for the instance.
         """
-        if item in {"__init__", "_Undefined__allowed_attributes"} or item in self.__allowed_attributes:
+        if item in _ALWAYS_ALLOWED_ATTRIBUTES or item in self.__allowed_attributes:
             return super().__getattribute__(item)
         Undefined.__raise_access_error(item)
 
@@ -173,6 +186,9 @@ class Undefined:
     def __to_instance_identifier(cls, allowed_attributes: Collection[AllowedAttribute] = ()) -> frozenset[str]:
         result = set()
         for attribute in allowed_attributes:
+            if attribute.attribute in _ALWAYS_ALLOWED_ATTRIBUTES:
+                msg = f"Attribute {attribute!r} is reserved for the internal use."
+                raise ValueError(msg)
             if attribute.attribute in result:
                 msg = f"Duplicate argument {attribute.attribute!r} in the allowed arguments."
                 raise ValueError(msg)
