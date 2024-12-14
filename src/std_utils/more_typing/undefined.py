@@ -50,7 +50,7 @@ _ALWAYS_ALLOWED_ATTRIBUTES: tuple[str, ...] = (
 Collection of attributes that are always allowed for the Undefined class.
 
 Attributes in this collection are required for the internal implementation, and access to them is always allowed.
-They are moved outside of the Undefined class to avoid recursion in the __getattribute__ method.
+They are moved outside of the Undefined class to avoid recursion in the `__getattribute__` method.
 """
 __pdoc__["_ALWAYS_ALLOWED_ATTRIBUTES"] = True
 
@@ -115,7 +115,7 @@ class Undefined:
 
     def __str__(self) -> str:
         """
-        Override of the __str__ method to return the default message for the Undefined object.
+        Override of the `__str__` method to return the default message for the Undefined object.
 
         Returns:
             str: Default message for Undefined object.
@@ -130,7 +130,7 @@ class Undefined:
 
     def __repr__(self) -> str:
         """
-        Override of the __repr__ method to return the default message for the Undefined object.
+        Override of the `__repr__` method to return the default message for the Undefined object.
 
         Returns:
             str: Default message for Undefined object.
@@ -145,7 +145,7 @@ class Undefined:
 
     def __bool__(self) -> bool:
         """
-        Override of the __bool__ method to always return False.
+        Override of the `__bool__` method to always return False.
 
         Returns:
             bool: Default value for the Undefined object.
@@ -160,14 +160,14 @@ class Undefined:
 
     def __getattribute__(self, item: str) -> Any:  # noqa: ANN401 - Any is useful here
         """
-        Override of the __getattribute__ method to raise an error on any access to the instance properties.
+        Override of the `__getattribute__` method to raise an error on any access to the instance properties.
 
         Arguments:
             item (str): The name of the attribute to access.
 
         Raises:
             ValueError: Always, as the access to the attribute is restricted. Exception made for several methods,
-            such as __str__, __bool__, and __repr__, if they are allowed for the instance.
+            such as `__str__`, `__bool__`, and `__repr__`, if they are allowed for the instance.
 
         Returns:
             Any: The value of the attribute if it is allowed for the instance.
@@ -216,26 +216,26 @@ STRINGABLE_UNDEFINED: Final[Any] = Undefined(
     AllowedAttribute("__repr__", lambda: "[UNDEFINED]"),
 )
 """
-The instance of the Undefined class that allows access to the __str__ and __repr__ methods.
+The instance of the Undefined class that allows access to the `__str__` and `__repr__` methods.
 
 Useful for cases where you need to access the string representation of the object at runtime without raising an error,
 for example, in the dataclasses, pydantic models. loggers, etc.
 
-If you need alternative implementation for the __str__ or __repr__ methods, you need to create a custom instance of the
-Undefined class with aliases specified.
+If you need alternative implementation for the `__str__` or `__repr__` methods, you need to create a custom instance of
+the Undefined class with aliases specified.
 """
 DOC_UNDEFINED: Final[Any] = Undefined(
     AllowedAttribute("__repr__", lambda: "[REQUIRED]"),
 )
 """
-Specific instance of the Undefined class that allows access to the __repr__ method.
+Specific instance of the Undefined class that allows access to the `__repr__` method.
 
 Used for cases you are using pdoc3 or sphinx to generate documentation. This object will prevent the generation from
 unexpected crashes on processing of the UNDEFINED object.
 """
 FALSEY_UNDEFINED: Final[Any] = Undefined(AllowedAttribute("__bool__", lambda: False))
 """
-Simple instance of the Undefined class that allows access to the __bool__ method.
+Simple instance of the Undefined class that allows access to the `__bool__` method.
 
 Useful for cases where UNDEFINED is actually a falsy value, and you need to check it in the if statement or any other
 boolean context.

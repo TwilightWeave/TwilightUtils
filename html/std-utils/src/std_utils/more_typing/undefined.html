@@ -44,13 +44,13 @@ el.replaceWith(d);
 <dl>
 <dt id="std-utils.src.std_utils.more_typing.undefined.DOC_UNDEFINED"><code class="name">var <span class="ident">DOC_UNDEFINED</span> : Final[Any]</code></dt>
 <dd>
-<div class="desc"><p>Specific instance of the Undefined class that allows access to the <strong>repr</strong> method.</p>
+<div class="desc"><p>Specific instance of the Undefined class that allows access to the <code>__repr__</code> method.</p>
 <p>Used for cases you are using pdoc3 or sphinx to generate documentation. This object will prevent the generation from
 unexpected crashes on processing of the UNDEFINED object.</p></div>
 </dd>
 <dt id="std-utils.src.std_utils.more_typing.undefined.FALSEY_UNDEFINED"><code class="name">var <span class="ident">FALSEY_UNDEFINED</span> : Final[Any]</code></dt>
 <dd>
-<div class="desc"><p>Simple instance of the Undefined class that allows access to the <strong>bool</strong> method.</p>
+<div class="desc"><p>Simple instance of the Undefined class that allows access to the <code>__bool__</code> method.</p>
 <p>Useful for cases where UNDEFINED is actually a falsy value, and you need to check it in the if statement or any other
 boolean context.</p></div>
 </dd>
@@ -60,11 +60,11 @@ boolean context.</p></div>
 </dd>
 <dt id="std-utils.src.std_utils.more_typing.undefined.STRINGABLE_UNDEFINED"><code class="name">var <span class="ident">STRINGABLE_UNDEFINED</span> : Final[Any]</code></dt>
 <dd>
-<div class="desc"><p>The instance of the Undefined class that allows access to the <strong>str</strong> and <strong>repr</strong> methods.</p>
+<div class="desc"><p>The instance of the Undefined class that allows access to the <code>__str__</code> and <code>__repr__</code> methods.</p>
 <p>Useful for cases where you need to access the string representation of the object at runtime without raising an error,
 for example, in the dataclasses, pydantic models. loggers, etc.</p>
-<p>If you need alternative implementation for the <strong>str</strong> or <strong>repr</strong> methods, you need to create a custom instance of the
-Undefined class with aliases specified.</p></div>
+<p>If you need alternative implementation for the <code>__str__</code> or <code>__repr__</code> methods, you need to create a custom instance of
+the Undefined class with aliases specified.</p></div>
 </dd>
 <dt id="std-utils.src.std_utils.more_typing.undefined.UNDEFINED"><code class="name">var <span class="ident">UNDEFINED</span> : Final[Any]</code></dt>
 <dd>
@@ -308,7 +308,7 @@ class AllowedAttribute:
 
     def __str__(self) -&gt; str:
         &#34;&#34;&#34;
-        Override of the __str__ method to return the default message for the Undefined object.
+        Override of the `__str__` method to return the default message for the Undefined object.
 
         Returns:
             str: Default message for Undefined object.
@@ -323,7 +323,7 @@ class AllowedAttribute:
 
     def __repr__(self) -&gt; str:
         &#34;&#34;&#34;
-        Override of the __repr__ method to return the default message for the Undefined object.
+        Override of the `__repr__` method to return the default message for the Undefined object.
 
         Returns:
             str: Default message for Undefined object.
@@ -338,7 +338,7 @@ class AllowedAttribute:
 
     def __bool__(self) -&gt; bool:
         &#34;&#34;&#34;
-        Override of the __bool__ method to always return False.
+        Override of the `__bool__` method to always return False.
 
         Returns:
             bool: Default value for the Undefined object.
@@ -353,14 +353,14 @@ class AllowedAttribute:
 
     def __getattribute__(self, item: str) -&gt; Any:  # noqa: ANN401 - Any is useful here
         &#34;&#34;&#34;
-        Override of the __getattribute__ method to raise an error on any access to the instance properties.
+        Override of the `__getattribute__` method to raise an error on any access to the instance properties.
 
         Arguments:
             item (str): The name of the attribute to access.
 
         Raises:
             ValueError: Always, as the access to the attribute is restricted. Exception made for several methods,
-            such as __str__, __bool__, and __repr__, if they are allowed for the instance.
+            such as `__str__`, `__bool__`, and `__repr__`, if they are allowed for the instance.
 
         Returns:
             Any: The value of the attribute if it is allowed for the instance.
