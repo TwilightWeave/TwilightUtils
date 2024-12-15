@@ -32,7 +32,8 @@ test = { chain = ["test:pytest"] }
 setup = { chain = ["setup:install"] }
 "setup:install" = "rye sync"
 docs = { chain = ["docs:pdoc"] }
-"docs:pdoc" = {cmd = "pdoc ./src/ -o ./html/", env = {STD_UTILS__UNDEFINED__DOC_GENERATING = "1"}}
+"docs:pdoc" = {cmd = "pdoc ./src/std_utils -o ./html/ --docformat google", env = {STD_UTILS__UNDEFINED__DOC_GENERATING = "1"}}
+
 
 [tool.ruff]
 line-length = 120
