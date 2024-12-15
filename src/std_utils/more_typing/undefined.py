@@ -12,8 +12,9 @@ __all__ = [
 ]
 
 import dataclasses
+import os
 from collections.abc import Callable, Collection
-from typing import Any, ClassVar, Final, NoReturn, Self, TypeIs, final
+from typing import Any, ClassVar, Final, NoReturn, Self, TypeIs
 
 
 @dataclasses.dataclass(frozen=True, slots=True)
@@ -41,10 +42,12 @@ class AllowedAttribute:
 
 _ALWAYS_ALLOWED_ATTRIBUTES: tuple[str, ...] = (
     "_Undefined__allowed_attributes",
+    "_Undefined__raise_access_error",
     "__init__",
     "__class__",
     "__wrapped__",
     "__module__",
+    "__qualname__",
 )
 """
 Collection of attributes that are always allowed for the Undefined class.
@@ -82,7 +85,6 @@ class Undefined:
 
     __instances: ClassVar[dict[frozenset[str], Self]] = {}
 
-    @final
     def __new__(cls, *allowed_attributes: AllowedAttribute) -> Self:
         """
         Return the same instance of the class per each set of allowed arguments.
@@ -105,7 +107,6 @@ class Undefined:
 
         return cls.__instances[instance_identifier]
 
-    @final
     def __init__(self, *allowed_attributes: AllowedAttribute) -> None:
         self.__allowed_attributes: dict[str, Callable[..., Any]] = {}
         for item in allowed_attributes:
@@ -131,6 +132,9 @@ class Undefined:
         """
         Override of the `__repr__` method to return the default message for the Undefined object.
 
+        If you need to access to this method for the documentation generation, you can specify
+        `STD_UTILS__UNDEFINED__DOC_GENERATING` environment variable to `1`.
+
         Returns:
             str: Default message for Undefined object.
 
@@ -138,6 +142,8 @@ class Undefined:
             ValueError: If the access to the attribute is restricted.
             AssertionError: If method returns a value of the wrong type.
         """
+        if os.getenv("STD_UTILS__UNDEFINED__DOC_GENERATING", "0") == "1":
+            return "[REQUIRED]"
         if "__repr__" in self.__allowed_attributes:
             return Undefined.__validate_correct_type(self.__allowed_attributes["__repr__"](), str)
         Undefined.__raise_access_error("__repr__")

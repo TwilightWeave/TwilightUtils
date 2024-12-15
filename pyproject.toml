@@ -13,6 +13,7 @@ dev-dependencies = [
     "pytest>=8.3.4",
     "pip>=24.3.1",
     "pdoc3>=0.11.5",
+    "pdoc>=15.0.1",
 ]
 
 [tool.rye.scripts]
@@ -30,8 +31,8 @@ pre-commit = { chain = ["format", "lint", "test", "docs"] }
 test = { chain = ["test:pytest"] }
 setup = { chain = ["setup:install"] }
 "setup:install" = "rye sync"
-docs = { chain = ["docs:pdoc3"] }
-"docs:pdoc3" = "pdoc --html . --force"
+docs = { chain = ["docs:pdoc"] }
+"docs:pdoc" = {cmd = "pdoc ./src/ -o ./html/", env = {STD_UTILS__UNDEFINED__DOC_GENERATING = "1"}}
 
 [tool.ruff]
 line-length = 120
