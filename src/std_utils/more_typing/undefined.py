@@ -48,6 +48,7 @@ _ALWAYS_ALLOWED_ATTRIBUTES: tuple[str, ...] = (
     "__wrapped__",
     "__module__",
     "__qualname__",
+    "__isabstractmethod__",
 )
 """
 Collection of attributes that are always allowed for the Undefined class.
