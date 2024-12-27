@@ -25,6 +25,13 @@ that.
 
 * Python 3.13 or higher. Support for lower versions will be added in the future releases.
 
+## Installation
+
+You can install the project using pip:
+
+```shell
+pip install twilight-utils
+```
 
 ### Development requirements:
 

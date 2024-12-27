@@ -31,6 +31,14 @@ that.
   [installation guide](https://rye.astral.sh/guide/installation/) for more details for your system.
 
 
+## Installation
+
+You can install the project using pip:
+
+```shell
+pip install twilight-utils
+```
+
 ## Contributing
 
 Project is an Open Source under BSD-3-Clause license. You can contribute to the project by creating issues,

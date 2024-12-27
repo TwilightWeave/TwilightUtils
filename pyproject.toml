@@ -23,7 +23,7 @@ classifiers = [
 urls = { Homepage = "https://github.com/TwilightWeave/TwilightUtils", Repository = "https://github.com/TwilightWeave/TwilightUtils", IssueTracker = "https://github.com/TwilightWeave/TwilightUtils/issues" }
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.26.3", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [tool.hatch.metadata]
