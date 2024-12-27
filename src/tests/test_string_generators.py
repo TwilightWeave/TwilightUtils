@@ -3,7 +3,7 @@ import uuid
 from typing import Literal, NamedTuple
 from unittest.mock import patch
 
-from std_utils.more_str.generators import random_string, uuid_to_base64
+from twilight_utils.more_str.generators import random_string, uuid_to_base64
 
 
 class _UUIDToBase64Case(NamedTuple):

@@ -1,6 +1,6 @@
 import unittest
 
-from std_utils.more_typing.signatures import has_same_signature
+from twilight_utils.more_typing.signatures import has_same_signature
 
 
 def _func_a(x: int, y: str) -> None:

@@ -1,10 +1,36 @@
 [project]
-name = "std-utils"
+name = "twilight-utils"
 version = "0.0.1"
-description = "Project to contain utility functions you copy in every damn project"
+description = "Library of python utility functions you copy in every damn project"
 dependencies = []
 readme = "README.md"
 requires-python = ">= 3.13"
+
+license = { text = "BSD-3-Clause" }
+authors = [
+    { name = "Jaden Corr", email = "jaden.corr88@gmail.com" },
+]
+keywords = [ "utilities", "python utilities" ]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+
+urls = { Homepage = "https://github.com/TwilightWeave/TwilightUtils", Repository = "https://github.com/TwilightWeave/TwilightUtils", IssueTracker = "https://github.com/TwilightWeave/TwilightUtils/issues" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/twilight_utils"]
 
 [tool.rye]
 dev-dependencies = [
@@ -12,7 +38,6 @@ dev-dependencies = [
     "mypy>=1.13.0",
     "pytest>=8.3.4",
     "pip>=24.3.1",
-    "pdoc3>=0.11.5",
     "pdoc>=15.0.1",
 ]
 
@@ -32,7 +57,7 @@ test = { chain = ["test:pytest"] }
 setup = { chain = ["setup:install"] }
 "setup:install" = "rye sync"
 docs = { chain = ["docs:pdoc"] }
-"docs:pdoc" = {cmd = "pdoc ./src/std_utils -o ./html/ --docformat google", env = {STD_UTILS__UNDEFINED__DOC_GENERATING = "1"}}
+"docs:pdoc" = {cmd = "pdoc ./src/twilight_utils -o ./docs/ --docformat google", env = {STD_UTILS__UNDEFINED__DOC_GENERATING = "1"}}
 
 
 [tool.ruff]

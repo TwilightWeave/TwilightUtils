@@ -1,3 +1,4 @@
+"""
 # Twilight utilities
 
 Utilities most of the python developers copy into each new project. Why do you want to do it ever damn time? Let's
@@ -37,3 +38,4 @@ pull requests, or by any other way you find useful.
 
 Project follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit
 messages. Please follow it when contributing to the project.
+"""  # noqa: D415

@@ -16,13 +16,8 @@ iniconfig==2.0.0
     # via pytest
 jinja2==3.1.4
     # via pdoc
-mako==1.3.8
-    # via pdoc3
-markdown==3.7
-    # via pdoc3
 markupsafe==3.0.2
     # via jinja2
-    # via mako
     # via pdoc
 mypy==1.13.0
 mypy-extensions==1.0.0
@@ -30,7 +25,6 @@ mypy-extensions==1.0.0
 packaging==24.2
     # via pytest
 pdoc==15.0.1
-pdoc3==0.11.5
 pip==24.3.1
 pluggy==1.5.0
     # via pytest
