@@ -58,7 +58,8 @@ twilight_utils    </h1>
 keep them in a single place as a collection of useful tools and utilities which we can share with each other! Less
 boilerplate, more fun!</p>
 
-<p>Repository: <a href="https://github.com/TwilightWeave/TwilightUtils">https://github.com/TwilightWeave/TwilightUtils</a></p>
+<p>Repository: <a href="https://github.com/TwilightWeave/TwilightUtils">https://github.com/TwilightWeave/TwilightUtils</a>
+Documentation: <a href="https://twilightweave.github.io/TwilightUtils/twilight_utils.html">https://twilightweave.github.io/TwilightUtils/twilight_utils.html</a></p>
 
 <h2 id="warning">Warning</h2>
 
@@ -107,39 +108,40 @@ messages. Please follow it when contributing to the project.</p>
 </span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="sd">boilerplate, more fun!</span>
 </span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="sd">Repository: https://github.com/TwilightWeave/TwilightUtils</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="sd">## Warning</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="sd">This project is in progres, and it&#39;s not ready for production use. I decided to publish it to PyPi earlier to improve</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="sd">dependency management in my other projects depending on this one. You can use it if you want, but be aware that the API,</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="sd">library structure, and even behaviour can change in the future without deprecation notice.</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="sd">In the future, project will use [Semantic Versioning](https://semver.org/), and will track backward compatibility</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="sd">changes properly, but for now even a `fix` release can provide breaking changes. Bug fixes will be associated with</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a><span class="sd">a `patch` release, like `0.0.1.1` to avoid confusion.</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="sd">After I feel project is ready for beta release, it will get a public 0.1.0 release and will follow semver rules after</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="sd">that.</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="sd">## Requirements:</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="sd">* Python 3.13 or higher. Support for lower versions will be added in the future releases.</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="sd">Documentation: https://twilightweave.github.io/TwilightUtils/twilight_utils.html</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="sd">## Warning</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="sd">This project is in progres, and it&#39;s not ready for production use. I decided to publish it to PyPi earlier to improve</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="sd">dependency management in my other projects depending on this one. You can use it if you want, but be aware that the API,</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="sd">library structure, and even behaviour can change in the future without deprecation notice.</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="sd">In the future, project will use [Semantic Versioning](https://semver.org/), and will track backward compatibility</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a><span class="sd">changes properly, but for now even a `fix` release can provide breaking changes. Bug fixes will be associated with</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="sd">a `patch` release, like `0.0.1.1` to avoid confusion.</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="sd">After I feel project is ready for beta release, it will get a public 0.1.0 release and will follow semver rules after</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="sd">that.</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="sd">## Requirements:</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a><span class="sd">* Python 3.13 or higher. Support for lower versions will be added in the future releases.</span>
 </span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a><span class="sd">### Development requirements:</span>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>
-</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a><span class="sd">* Rye is used as a project dependency and package managing tool. See official</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a><span class="sd">  [installation guide](https://rye.astral.sh/guide/installation/) for more details for your system.</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a><span class="sd">### Development requirements:</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a><span class="sd">* Rye is used as a project dependency and package managing tool. See official</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a><span class="sd">  [installation guide](https://rye.astral.sh/guide/installation/) for more details for your system.</span>
 </span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a><span class="sd">## Contributing</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a><span class="sd">Project is an Open Source under BSD-3-Clause license. You can contribute to the project by creating issues,</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a><span class="sd">pull requests, or by any other way you find useful.</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>
-</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a><span class="sd">Project follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a><span class="sd">messages. Please follow it when contributing to the project.</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a><span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># noqa: D415</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="sd">## Contributing</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a><span class="sd">Project is an Open Source under BSD-3-Clause license. You can contribute to the project by creating issues,</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a><span class="sd">pull requests, or by any other way you find useful.</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>
+</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a><span class="sd">Project follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for commit</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a><span class="sd">messages. Please follow it when contributing to the project.</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a><span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># noqa: D415</span>
 </span></pre></div>
 
 
